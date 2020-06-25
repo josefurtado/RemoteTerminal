@@ -1,0 +1,68 @@
+<div class=" content">
+  <div class=" row">
+    <div class=" col-12">
+      <div class=" card card-chart">
+        <div class=" card-header">
+          <div class=" row">
+            <div class=" col-sm-6 text-left">
+              <h5 class=" card-category" *ngIf="view === 'list'; else labelTerminal">Machines</h5>
+              <ng-template #labelTerminal>
+                <button class=" btn btn-link btn-icon" type="button" (click)="back()"><i
+                    class=" tim-icons icon-minimal-left"></i></button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class="row" *ngIf="view === 'list'; else terminal">
+            <div class=" font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" *ngFor="let machine of machines">
+              <div class=" font-icon-detail" style="cursor: pointer;" (click)="showTerminal(machine)"><i
+                  class=" tim-icons icon-laptop"></i>
+                <p style="color: #00f2c3!important; font-size: 17px;">{{machine.name}}</p>
+                <footer class="blockquote-footer">
+                  IP: {{machine.ipAddress}}
+                </footer>
+                <footer class="blockquote-footer">
+                  OS Version: {{machine.osVersion}}
+                </footer>
+
+                <div class="card card-nav-tabs">
+                  <div class="card-header card-header-success">
+                    Disks
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0" style="padding: 0;" *ngFor="let disk of machine.disks">
+                      <p>{{disk.name}}</p>
+                      <footer class="blockquote-footer">
+                        Free Disk Space: {{ convertMbToGb(disk.freeDiskSpace)}} GB
+                      </footer>
+                      <footer class="blockquote-footer">
+                        Total Disk Size: {{convertMbToGb(disk.totalDiskSize)}} GB
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #terminal>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-md-12" style="overflow-y: auto; max-height: 500px; margin-bottom: 50px;" id="terminal">
+                  <p *ngFor="let response of terminalResponse">{{response}}</p>
+                </div>
+                <div class=" col-md-12">
+                  <div class=" form-group"><label style="color: azure;"> POWERSHELL COMMAND (Press enter to execute)
+                    </label>
+                    <input class="form-control" [formControl]="terminalCommand" (keyup.enter)="sendCommand()"
+                      placeholder="type something :D" type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
