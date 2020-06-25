@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Sockets;
 
@@ -15,6 +16,8 @@ namespace BattleRoyalle.Service.Core
         public static string OSVersion => Environment.OSVersion.VersionString;
         
         public static string IpAddress => GetIpAddress();
+
+        public static MachineAntivirus Antivirus => GetAntivirus();
         
         public static IEnumerable<MachineDisk> Disks => GetDisks();
         
@@ -35,19 +38,23 @@ namespace BattleRoyalle.Service.Core
                 });
         }
 
-        //private static string GetAntivirus()
-        //{
-        //    string antivirus = String.Empty;
+        private static MachineAntivirus GetAntivirus()
+        {
+            string antivirus = String.Empty;
 
-        //    ManagementObjectSearcher wmiData = new ManagementObjectSearcher(@"root\SecurityCenter2", "SELECT * FROM AntiVirusProduct");
-        //    ManagementObjectCollection data = wmiData.Get();
+            ManagementObjectSearcher wmiData = new ManagementObjectSearcher(@"root\SecurityCenter2", "SELECT * FROM AntiVirusProduct");
+            ManagementObjectCollection data = wmiData.Get();
 
-        //    foreach (ManagementObject virusChecker in data)
-        //    {
-        //        antivirus = virusChecker["displayName"].ToString();
-        //    }
+            var machineAntivirus = new MachineAntivirus { 
+                HasAntivirus = data.Count > 0           
+            };
 
-        //    return antivirus;
-        //}
+            foreach (ManagementObject virusChecker in data)
+            {
+                machineAntivirus.AntivirusName += String.Join(" ", virusChecker["displayName"].ToString());
+            }
+
+            return machineAntivirus;
+        }
     }
 }

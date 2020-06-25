@@ -29,10 +29,12 @@ namespace BattleRoyalle.Service.Core
             {
                 var machineDetails = new MachineDetails
                 {
-                    Name = MachineSetup.Name,
-                    Disks = MachineSetup.Disks,
-                    OSVersion = MachineSetup.OSVersion,
-                    IpAddress = MachineSetup.IpAddress
+                    Name          = MachineSetup.Name,
+                    Disks         = MachineSetup.Disks,
+                    OSVersion     = MachineSetup.OSVersion,
+                    IpAddress     = MachineSetup.IpAddress,
+                    HasAntivirus  = MachineSetup.Antivirus.HasAntivirus,
+                    AntivirusName = MachineSetup.Antivirus.AntivirusName
                 };
 
                 var machineDetailsStr = JsonSerializer.Serialize(machineDetails);

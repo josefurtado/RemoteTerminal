@@ -18,6 +18,8 @@ namespace BattleRoyalle.Domain.Commands.Input.Machine
         public string OSVersion { get; set; }
         public string IpAddress { get; set; }
         public string ConnectionId { get; set; }
+        public string AntivirusName { get; set; }
+        public bool HasAntivirus { get; set; }
 
         public ICollection<Disk> Disks { get; set; }
 

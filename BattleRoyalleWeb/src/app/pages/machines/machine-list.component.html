@@ -15,7 +15,7 @@
         </div>
         <div class=" card-body">
           <div class="row" *ngIf="view === 'list'; else terminal">
-            <div class=" font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" *ngFor="let machine of machines">
+            <div class=" font-icon-list col-md-4" *ngFor="let machine of machines">
               <div class=" font-icon-detail" style="cursor: pointer;" (click)="showTerminal(machine)"><i
                   class=" tim-icons icon-laptop"></i>
                 <p style="color: #00f2c3!important; font-size: 17px;">{{machine.name}}</p>
@@ -24,6 +24,9 @@
                 </footer>
                 <footer class="blockquote-footer">
                   OS Version: {{machine.osVersion}}
+                </footer>
+                <footer class="blockquote-footer" *ngIf="machine.hasAntivirus">
+                  Antivirus: {{machine.antivirusName}}
                 </footer>
 
                 <div class="card card-nav-tabs">

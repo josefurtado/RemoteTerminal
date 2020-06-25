@@ -45,6 +45,8 @@ namespace BattleRoyalle.Api.SignalR
                 OSVersion    = machine.OSVersion,
                 IpAddress    = machine.IpAddress,
                 ConnectionId = ConnectionId,
+                HasAntivirus = machine.HasAntivirus,
+                AntivirusName = machine.AntivirusName,
                 Disks        = machine.Disks.Select(x => 
                                                     new Disk(
                                                         name: x.Name, 

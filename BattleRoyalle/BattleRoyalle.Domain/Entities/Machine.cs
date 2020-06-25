@@ -7,11 +7,13 @@ namespace BattleRoyalle.Domain.Entities
     {
         protected Machine() {}
 
-        public Machine(string name, string osversion, string ipAddress, string connectionId = null)
+        public Machine(string name, string osversion, string ipAddress, bool hasAntivirus, string antivirusName, string connectionId = null)
         {
             Name = name;
             OSVersion = osversion;
             IpAddress = ipAddress;
+            HasAntivirus = hasAntivirus;
+            AntivirusName = antivirusName;
             Disks = new List<Disk>();
             LastConnectionId = connectionId;
         }
@@ -20,6 +22,8 @@ namespace BattleRoyalle.Domain.Entities
         public string OSVersion { get; private set; }
         public string IpAddress { get; private set; }
         public string LastConnectionId { get; private set; }
+        public string AntivirusName { get; private set; }
+        public bool HasAntivirus { get; private set; }
         public ICollection<Disk> Disks { get; private set; }
 
         public void AddDisk(Disk disk)

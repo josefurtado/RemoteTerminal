@@ -6,6 +6,8 @@ export class MachineModel {
     ipAddress: string;
     osVersion: string;
     creationDate: Date;
+    hasAntivirus: boolean;
+    antivirusName: string;
     lastConnectionId: string;
     disks: DiskModel[];
 }

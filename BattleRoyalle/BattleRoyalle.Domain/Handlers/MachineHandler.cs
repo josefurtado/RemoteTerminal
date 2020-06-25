@@ -22,7 +22,13 @@ namespace BattleRoyalle.Domain.Handlers
         {
             try
             {
-                var machine = new Machine(name: command.Name, osversion: command.OSVersion, ipAddress: command.IpAddress, connectionId: command.ConnectionId);
+                var machine = new Machine(
+                    name: command.Name, 
+                    osversion: command.OSVersion, 
+                    hasAntivirus: command.HasAntivirus, 
+                    antivirusName: command.AntivirusName, 
+                    ipAddress: command.IpAddress, 
+                    connectionId: command.ConnectionId);
 
                 foreach (var disk in command.Disks)
                 {
