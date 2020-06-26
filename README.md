@@ -2,7 +2,6 @@
 
 Installation Steps
 
-- Build "Crtl + Shift + B" a service project. (BattleRoyalle/BattleRoyalle.Service)
 - Start to BattleRoyalle API. (BattleRoyalle/BattleRoyalle.Api)
 - Run "npm i" in BattleRoyalleWeb project.
 - Run "npm run start" in BattleRoyalleWeb project.
